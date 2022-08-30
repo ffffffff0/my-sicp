@@ -1,0 +1,12 @@
+const coins = [1, 5, 10, 25, 50];
+function countChange(amount, kinds) {
+  if (amount === 0) {
+    return 1;
+  } else if ((amount < 0) || (kinds < 0)) {
+    return 0;
+  } else {
+    return countChange(amount, kinds-1) + countChange(amount - coins[kinds], kinds);
+  }
+}
+
+countChange(100, 5);
