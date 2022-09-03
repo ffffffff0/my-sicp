@@ -1,3 +1,5 @@
+#lang sicp
+
 (define (square x)
   (* x x))
 
@@ -5,7 +7,7 @@
   (< (abs (- (square guess) x)) 0.001))
 
 (define (new-good-enough? old-value new-value)
-  (> 0.01 (/ (abs (- old-value new-value)) old-value))
+  (> 0.01 (/ (abs (- old-value new-value)) old-value)))
 
 (define (average x y)
   (/ (+ x y) 2))

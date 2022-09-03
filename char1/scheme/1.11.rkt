@@ -1,3 +1,4 @@
+#lang sicp
 (define (func-rec n)
   (if (< n 3)
       n

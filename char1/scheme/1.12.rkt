@@ -1,3 +1,4 @@
+#lang sicp
 (define (func-pascal a b)
   (if (or (= a b) (= b 0))
       1

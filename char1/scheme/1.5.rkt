@@ -1,3 +1,4 @@
+#lang sicp
 (define (p) (p))
 
 (define (test x y)
