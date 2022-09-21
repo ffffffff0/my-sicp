@@ -11,6 +11,7 @@
        (not (= a (- n 1)))
        (= 1 (remainder (squre a) n)))
 )
+
 (define (exptmod base exp m)
     (cond ((= exp 0) 1)
           ((nontrivial-square-root base m)
@@ -26,6 +27,7 @@
     )
 )
 
+; random n not is zero
 (define (non-zero-random n)
   (let ((r (random n)))
     (if (not (= r 0))
