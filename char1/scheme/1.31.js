@@ -12,3 +12,4 @@ const func = (x) => {
 }
 
 console.log(product(func, 1, 10));
+console.log(product(func, 1, 100));
