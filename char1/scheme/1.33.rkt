@@ -36,3 +36,26 @@
           [else (iter a result)]))
   (iter a null-value))
 
+(define (primer? x)
+  (define (next test-divisor)
+    (if (= test-divisor 2)
+        3
+        (+ test-divisor 2)))
+  (define (find-divisor n test-divisor)
+    (cond ((> (* test-divisor test-divisor) n) n)
+          (((lambda (a b) (= (remainder b a) 0)) test-divisor n) test-divisor)
+          (else (find-divisor n (next test-divisor)))))
+  (= x (find-divisor x 2)))
+
+; sum square primer
+(define (sum-square-primer a b)
+  (filter-accumulate +
+                     0
+                     (lambda (x) (* x x))
+                     a
+                     (lambda (x) (+ x 1))
+                     b
+                     primer?))
+
+(sum-square-primer 2 10)
+
