@@ -5,8 +5,8 @@
 ;   (if (> a b)
 ;       null-value
 ;       (if (filter a)
-;           (combiner (term a) (filter-accumulate combiner null-value term a next b filter))
-;           (combiner null-value (filter-accumulate combiner null-value term a next b filter)))))
+;           (combiner (term a) (filter-accumulate combiner null-value term (next a) next b filter))
+;           (combiner null-value (filter-accumulate combiner null-value term (next a) next b filter)))))
 ; recursive 2.0
 ; (define (filter-accumulate combiner null-value term a next b filter)
 ;   (if (> a b)
@@ -14,37 +14,37 @@
 ;       (combiner (if (filter a)
 ;                     (term a)
 ;                     null-value)
-;                 (filter-accumulate combiner null-value term a next b filter))))
+;                 (filter-accumulate combiner null-value term (next a) next b filter))))
 
 ; iterative 1.0
 ; (define (filter-accumulate combiner null-value term a next b filter)
 ;   (define (iter a result)
-;     result
 ;     (if (> a b)
 ;         result
 ;         (if (filter a)
 ;             (iter (next a) (combiner result (term a)))
-;             (iter a result))))
+;             (iter (next a) result))))
 ;   (iter a null-value))
 
 ; iterative 2.0
 (define (filter-accumulate combiner null-value term a next b filter)
   (define (iter a result)
-    result
     (cond [(> a b) result]
           [(filter a) (iter (next a) (combiner result (term a)))]
-          [else (iter a result)]))
+          [else (iter (next a) result)]))
   (iter a null-value))
 
+(define (next-p test-divisor)
+  (if (= test-divisor 2)
+      3
+      (+ test-divisor 2)))
+
+(define (find-divisor n test-divisor)
+  (cond [(> (* test-divisor test-divisor) n) n]
+        [((lambda (a b) (= (remainder b a) 0)) test-divisor n) test-divisor]
+        [else (find-divisor n (next-p test-divisor))]))
+
 (define (primer? x)
-  (define (next test-divisor)
-    (if (= test-divisor 2)
-        3
-        (+ test-divisor 2)))
-  (define (find-divisor n test-divisor)
-    (cond ((> (* test-divisor test-divisor) n) n)
-          (((lambda (a b) (= (remainder b a) 0)) test-divisor n) test-divisor)
-          (else (find-divisor n (next test-divisor)))))
   (= x (find-divisor x 2)))
 
 ; sum square primer
@@ -59,3 +59,4 @@
 
 (sum-square-primer 2 10)
 
+; 
