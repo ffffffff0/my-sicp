@@ -1,14 +1,15 @@
-const product = (func, a, b) => {
-  let ret = 1;
-  for (let i=a; i<b; i++) {
-    ret = ret * func(i);
-  }
-
-  return ret;
+const product = function(term, a, next, b) {
+  return a > b ? 1 : term(a) * product(term, next(a), next, b);
 };
 
-const func = (x) => {
-  return x;
-}
+const number_item = function(index){
+  if ()
+};
 
-console.log(product(func, 1, 10));
+const deno_item = function(index){
+
+};
+
+const pi = function(n) {
+
+};

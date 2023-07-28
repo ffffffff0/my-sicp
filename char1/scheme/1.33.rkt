@@ -59,4 +59,6 @@
 
 (sum-square-primer 2 10)
 
-; 
+; all product positive integer
+(define (product-positive-int a b)
+  ())
