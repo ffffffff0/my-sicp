@@ -59,6 +59,26 @@
 
 (sum-square-primer 2 10)
 
+
+(define (gcd a b)
+  (cond [(< a b) (gcd b a)]
+        [(= b 0) a]
+        [else (gcd b (remainder a b))]))
+
+(define (coprime? i n)
+  (= 1 (gcd i n)))
+
+(coprime? 2 7)
+(coprime? 2 4)
+
 ; all product positive integer
-(define (product-positive-int a b)
-  ())
+(define (product-positive-int n)
+  (filter-accumulate *
+                     1
+                     (lambda (x) x)
+                     1
+                     (lambda (i) (+ i 1))
+                     n
+                     (lambda (x) (coprime? x n))))
+
+(product-positive-int 10)
