@@ -1,22 +1,24 @@
 #lang sicp
 
-; recursive
-(define (cont-frac n d k)
-  (define (rec-item idx)
-    (if (> idx k)
-        0
-        (/ n
-           (+ d
-              (rec-item (+ 1 idx))))))
-  (rec-item 1))
-
 ; iterative
 ; (define (cont-frac n d k)
-;   (define (iter-item idx result)
-;     (if (> idx k)
+;   (define (loop result idx)
+;     (if (= idx 0)
 ;         result
-;         (iter-item (+ idx 1) ()))))
+;         (loop (/ (n idx)
+;                  (+ (d idx) result))
+;               (- idx 1))))
+;   (loop 0 k))
 
+; recusive
+(define (cont-frac n d k)
+  (if (= k 0)
+      0
+      (/ (n k)
+         (+ (d k)
+            (cont-frac n d (- k 1))))))
+
+; test
 (cont-frac (lambda (i) 1.0)
            (lambda (i) 1.0)
            10)
