@@ -1,5 +1,18 @@
 #lang sicp
 
+(define (cons x y)
+  (define (dispatch m)
+    (cond ((= m 0) x)
+          ((= m 1) y)
+          (else (error "argument not 0 or 1 -- cons" m))))
+  dispatch)
+
+(define (car z)
+  (z 0))
+
+(define (cdr z)
+  (z 1))
+
 (define (gcd a b)
   (if (= b 0)
       a
