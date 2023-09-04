@@ -1,14 +1,18 @@
 #lang sicp
 
-(define (same-parity . aList)
-  (define (iter aList func ret)
+(define (append list1 list2)
+  (if (null? list1)
+      list2
+      (cons (car list1) (append (cdr list1) list2))))
+
+(define (same-parity first . aList)
+  (define (iter aList ret remainder-val)
     (if (null? aList)
         ret
-        (if (func (car aList))
-            (iter (cdr aList) func (cons ret (car aList))))))
-  (if (odd? (car aList))
-      (iter aList odd? '())
-      (iter aList even? '())))
+        (iter (cdr aList) (if (= (remainder (car aList) 2) remainder-val)
+                              (append ret (list (car aList)))
+                              ret) remainder-val)))
+  (iter aList (list first) (remainder first 2)))
 
 (same-parity 1 2 3 4 5 6 7)
 (same-parity 2 3 4 5 6 7)
