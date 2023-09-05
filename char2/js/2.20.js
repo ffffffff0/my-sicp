@@ -16,7 +16,7 @@ const sameParityIter = function(aList, ret, mod) {
     }
 
     if (aList.val % 2 === mod) {
-        ret.next = new listNode(aList.val);
+        ret = appendList(ret, new listNode(aList.val));
     }
 
     return sameParityIter(aList.next, ret, mod);
