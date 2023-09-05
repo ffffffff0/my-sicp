@@ -1,9 +1,12 @@
 #lang sicp
 
+; (define (for-each proc aList)
+;   (if (null? aList)
+;       #t
+;       (and (proc (car aList)) (for-each proc (cdr aList)))))
+
 (define (for-each proc aList)
-  (if (null? aList)
-      #t
-      (and (proc (car aList)) (for-each proc (cdr aList))))))
+  (cond [(not (null? aList)) (proc (car aList)) (for-each proc (cdr aList))]))
 
 (for-each (lambda (x)
             (newline)
