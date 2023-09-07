@@ -1,7 +1,7 @@
 const x = [[1, 2], 3, [4, 5], [8, 9, 10], [6, 7], 10];
 
 function car(aList) {
-    return Array.isArray(aList) ? aList[0] : null;
+    return Array.isArray(aList) ? aList[0] : null
 }
 function cdr(aList) {
   return aList.length === 0 ? aList[0] : aList.slice(1);
@@ -12,7 +12,8 @@ function isPair(aList) {
 
 const reverse_iter = function(aList, ret) {
     console.log('ret: ' + JSON.stringify(ret));
-    if (!aList) {
+    console.log('aList: ' + JSON.stringify(aList));
+    if (aList.length === 0) {
         return ret;
     }
 
