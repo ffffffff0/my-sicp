@@ -33,14 +33,14 @@
 #|
   (subsets (1 2 3))
   (append (subsets (2 3)) (map func (subsets (2 3)))) next step:
-(append ((3) (2 3)) (map func ((3) (2 3))))
-(append ((3) (2 3)) ((1 3) (1 2 3))
-((3) (2 3) (1 3) (1 2 3))
+(append (() (2) (3) (2 3)) ((1) (1 2) (1 3) (1 2 3)))
+(() (2) (3) (1) (1 2) (1 3) (2 3) (1 2 3))
 
 (subsets (2 3))
 (append (subsets (3)) (map func (subsets (3)))) next step:
-= ((3) (2 3))
+= (append (() (3)) ((2) (2 3)))
+= (() (2) (3) (2 3))
 
 (subsets (3))
-(append nil (map func nil)) = (append nil (3)) = (3)
+(append () (map func ())) = (append () (3)) = (() (3))
 |#
