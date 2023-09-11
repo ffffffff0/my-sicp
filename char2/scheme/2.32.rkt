@@ -22,7 +22,7 @@
 
 (define (subsets s)
   (if (null? s)
-      (list nil)
+      (list '())
       (append (subsets (cdr s))
               (map (lambda (x)
                      (cons (car s) x))
