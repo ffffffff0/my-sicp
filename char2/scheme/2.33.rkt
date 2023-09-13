@@ -34,7 +34,7 @@
 (define (square x)
   (* x x))
 
-(map square (list 1 2 3 4 5))
+; (map square (list 1 2 3 4 5))
 
 (define (filter predicate sequence)
   (cond [(null? sequence) nil]
@@ -88,11 +88,13 @@
 
 (even-fibs 10)
 
-(define (map p sequence)
+(define (maps p sequence)
   (accumulate (lambda (x y)
                 (cons (p x) y))
               nil
               sequence))
+
+(maps (lambda (x) (* x x)) (list 1 2 3 4 5))
 
 
 
