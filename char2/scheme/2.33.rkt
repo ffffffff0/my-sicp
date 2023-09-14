@@ -104,12 +104,19 @@
 (appends (list 1 2 3 4 5) (list 6 7 8 9))
 
 (define (lengths sequence)
-  (accumulate (lambda (x y)
-                ()) 
+  (accumulate (lambda (x y) (+ 1 y)) 
               0
               sequence))
 
 (lengths (list 1 2 3 4 5 6 7 8))
+
+; (define (accumulate op initial sequence)
+;   (if (null? sequence)
+;       initial
+;       (op (car sequence)
+;           (accumulate op initial (cdr sequence)))))
+
+
 
 
 
