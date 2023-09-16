@@ -11,8 +11,20 @@
 ;         [(not (pair? t)) 1]
 ;         [else (+ (count-leaves (car t))
 ;                  (count-leaves (cdr t)))]))
+; 迭代
+(define (fringe aList)
+  (define (fringe-iter aList ret)
+    (cond [(null? aList) ret]
+          [(pair? aList)
+           ()])))
 
 (define (count-leaves t)
-  (accumulate ))
+  (accumulate +
+              0
+              (map (lambda (tree)
+                     (if (pair? tree)
+                         (count-leaves tree)
+                         1))
+                   t)))
 
 ; (count-leaves (list (list 1 2) (list 3 (list 5 6)) 5))
