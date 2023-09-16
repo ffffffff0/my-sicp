@@ -11,12 +11,23 @@
 ;         [(not (pair? t)) 1]
 ;         [else (+ (count-leaves (car t))
 ;                  (count-leaves (cdr t)))]))
-; 迭代
+;; 递归
 (define (fringe aList)
-  (define (fringe-iter aList ret)
-    (cond [(null? aList) ret]
-          [(pair? aList)
-           ()])))
+  (if (null? aList)
+      '()
+      (let ((first (car aList)))
+        (if (pair? first)
+            (append (fringe first) (fringe (cdr aList)))
+            (cons first (fringe (cdr aList)))))))
+
+; 迭代
+; (define (fringe aList)
+;   (define (fringe-iter aList ret)
+;     (cond [(null? aList) ret]
+;           [(pair? aList)
+;            (fringe-iter (car aList) (fringe-iter (cdr aList) ret))]
+;           [else (cons aList ret)]))
+;   (fringe-iter aList '()))
 
 (define (count-leaves t)
   (accumulate +
